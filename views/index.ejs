@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+  <div class="main">
+    <div class="left">
+      <form action="/createfile" method="post">
+        <input type="text" placeholder="Create New File" name="filename">
+      </form>
+      <ol>
+       <% {uploadsData.forEach((file)=>{ %>
+          <li><a href="/<%=file%>"><%=file%></a> <a href="/delete/<%=file%>"><i class="ri-delete-bin-6-line"></i></a></li>
+       <% })}%>
+      </ol>
+    </div>
+    <div class="right">
+     <div class="nav">
+    
+     <% if(filename != ""){%>
+        <p><a href="/<%=filename%>"><%=filename%></a><a href="/delete/<%=filename%>"><i class="ri-close-fill"></i></a> </p>
+      
+      <%}%>
+    
+    </div>
+     <% if(filename != ""){ %>
+        <form action="/updated/<%=filename%>" method="post">
+          <textarea class="text" name="updatedText" id="" cols="30" rows="10">
+            <%=fileData%>
+          </textarea>
+          <button >SAVE</button>
+        </form>
+     <% } %>
+    </div>
+  </div>
+</body>
+</html>
